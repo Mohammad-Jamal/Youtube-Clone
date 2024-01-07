@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>YouTube</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="icons/Youtube.jpg">
+  <style>
+    body {
+      margin: 0;
+      padding-top: 80px;
+      padding-left: 96px;
+      padding-right: 24px;
+      height: 1100px;
+      background-color:rgb(246, 246, 246);
+      
+    }
+    p {
+      font-family: Roboto,Arial;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .header {
+        display: flex;
+        flex-direction: row;
+        height: 55px;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background-color: white;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-color:rgb(214, 201, 201);
+         
+      }
+      .left-section {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+
+      }
+      .menu {
+        width: 24px;
+        margin-left: 25px;
+        margin-right: 23px;
+        cursor: pointer;
+
+      }
+      .logo {
+        width: 90px;
+        cursor: pointer;
+      }
+      .middle-section {
+        display: flex;
+        flex: 1;
+        max-width: 500px;
+        margin-left:70px;
+        margin-right:35px;
+        align-items: center;
+
+      }
+      .search-bar {
+        flex: 1;
+        height: 36px;
+        padding-left: 10px;
+        font-size: 16px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(192, 192, 192);
+        border-radius: 2px;
+        box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+        width: 0;
+        margin-right: -1px;
+        
+      }
+
+      .search-bar::placeholder {
+        font-family: Roboto, Arial;
+        font-size: 16px;
+      }
+      .search-button {
+        height: 40px;
+        width: 66px;
+        background-color: rgba(247,247,247);
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(216, 216, 216);
+        margin-right: 10px;
+        margin-left: -1px;
+        border-radius: 0;
+
+      }
+      .search-icon {
+        height: 27px;
+        margin-top: 4px;
+        cursor: pointer;
+        padding-top: 0px;
+
+      }
+      .voice-button {
+        height: 40px;
+        width: 40px;
+        border-radius: 20px;
+        border: none;
+        margin-left: 9px;
+        cursor: pointer;
+        background-color:  rgb(244, 244, 244);
+        
+        
+      }
+
+      .voice-button,
+      .upload-icon-box,
+      .apps-icon-box,
+      .notifications-box {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+      }
+      .voice-button .tooltip,
+      .upload-icon-box .tooltip,
+      .apps-icon-box .tooltip,
+      .notifications-box .tooltip {
+        position: absolute;
+        color: white;
+        font-size: 13px;
+        background-color: rgba(128, 128, 128, 0.837);
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-right: 8px;
+        padding-left: 8px;
+        border-radius: 2px;
+        bottom: -45px;
+        opacity: 0;
+        transition: opacity 0.15s;
+        pointer-events: none;
+        white-space: nowrap;
+
+      }
+      .voice-button:hover .tooltip,
+      .upload-icon-box:hover .tooltip,
+      .apps-icon-box:hover .tooltip,
+      .notifications-box:hover .tooltip {
+        opacity: 1;
+
+      }
+      .voice-icon {
+        height: 22px;
+      }
+
+      .right-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 170px;
+        margin-right: 25px;
+        flex-shrink: 0;
+      }
+      .upload-icon {
+        height: 24px;
+      }
+      .apps-icon {
+        height: 24px;
+      }
+      .notifications-icon {
+        height: 24px;
+      }
+      .notifications-box {
+        position: relative;
+
+      }
+      .notifications-count {
+        position: absolute;
+        top: -1px;
+        right: -6px;
+        color: white;
+        font-family: Roboto,Arial;
+        font-size: 11px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 5px;
+        padding-right:5px;
+        border-style: solid;
+        border-color: white;
+        border-width: 2px;
+        border-radius: 10px;
+        background-color: rgb(199, 43, 43);
+      }
+      .channel-icon {
+        width: 32px;
+        border-radius: 16px;
+        cursor: pointer;
+
+      }
+      @media (max-width: 1600px) {
+        .sidebar {
+          width: 72px;
+          position: fixed;
+          top: 55px;
+          left: 0;
+          bottom: 0;
+          z-index: 500;
+          padding-top: 4px;
+          background-color: white;
+        }
+        .sidebar-link {
+        
+          height: 74px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+        }
+        .sidebar-link:hover {
+          background-color: rgb(235, 235, 235);
+        }
+        .sidebar-link img {
+          height: 24px;
+          margin-bottom: 5px;
+        }
+        .sidebar div {
+          font-family: Roboto,Arial;
+          font-size: 10px;
+        }         
+      
+      }
+      @media (min-width: 1600.1px) {
+        .sidebar {
+          width: 200px;
+          position: fixed;
+          top: 55px;
+          left: 0;
+          bottom: 0;
+          z-index: 500;
+          padding-top: 4px;
+          background-color: white;
+        }
+        .sidebar-link {
+        
+          height: 74px;
+          display: flex;
+          flex-direction: row;
+          justify-content: start;
+          align-items: center;
+          margin-left: 10px;
+
+        }
+        .sidebar-link:hover {
+          background-color: rgb(235, 235, 235);
+        }
+        .sidebar-link img {
+          height: 24px;
+          margin-bottom: 5px;
+          margin-right: 15px;
+          margin-left: 15px;
+        }
+        .sidebar div {
+          font-family: Roboto,Arial;
+          font-size: 13px;
+
+        }
+        body {
+          padding-left: 223px;
+        }
+      }
+
+ 
+
+    .video-grid {
+      display: grid;
+      grid-template-columns:1fr 1fr 1fr;
+      column-gap: 15px;
+      row-gap: 40px;
+    }
+    @media (max-width: 750px) {
+      .video-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 751px) and (max-width: 999px) {
+      .video-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+    @media (min-width: 1000px) {
+      .video-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+    .video-thumbnail {
+      position: relative;
+    }
+    .video-time {
+      position: absolute;
+      background-color: black;
+      color: white;
+      font-family: Roboto,Arial;
+      font-weight: 500;
+      font-size: 11px;
+      right: 4px;
+      bottom: 22px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      padding-left: 3px;
+      padding-right: 3px;
+      border-radius: 2px;
+
+    }
+
+    .thumbnail {
+      margin-bottom: 12px;
+      width: 100%;
+    }
+    .video-title-link {
+      color: black;
+      text-decoration: none;
+    }
+    .channel-link {
+      text-decoration: none;
+    }
+ 
+    .profile-picture {
+      width: 40px;
+      border-radius: 50px;
+    }
+    .video-info-grid {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+    }
+
+    .video-title {
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 10px;
+      line-height: 20px;
+    }
+    @media (min-width: 1000px) {
+      .video-title {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+    @media (min-width: 1000px) {
+      .video-author,
+      .video-stats {
+        font-size: 14px;
+    }
+    }
+    .video-author,
+    .video-stats {
+      font-size: 13px;
+      color: rgb(96, 96, 96);
+    }
+    .video-author {
+      margin-bottom: 4px;
+    }
+
+  </style>
+
+</head>
+
+
+
+<body>
+  <header class="header">
+    <div class="left-section">
+      <img class="menu" src="icons/hamburger-menu.svg">
+      <img class="logo" src="icons/youtube-logo.svg">
+      
+    </div>
+    <div class="middle-section">
+      <input class="search-bar" type="text" placeholder="Search">
+      <button class="search-botton">
+        <img class="search-icon" src="icons/search.svg">
+      </button>
+
+      <button class="voice-button">
+        <img class="voice-icon" src="icons/voice-search-icon.svg">
+        <div class="tooltip">
+          Search with your voice
+        </div>
+      </button>
+      
+    </div>
+    <div class="right-section">
+      <div class="upload-icon-box">
+        <img class="upload-icon" src="icons/upload.svg">
+        <div class="tooltip">Create</div>
+      </div>
+      <div class="apps-icon-box">
+        <img class="apps-icon" src="icons/youtube-apps.svg">
+        <div class="tooltip">Apps</div>
+      </div>
+      
+      <div class="notifications-box">
+        <img class="notifications-icon" src="icons/notifications.svg">
+        <div class="notifications-count">
+          3
+        </div>
+        <div class="tooltip">
+          Notifications
+        </div>
+      </div>
+      
+      <img class="channel-icon" src="channel-pictures/my-channel.jpeg">
+    </div>
+  </header>
+  <nav class="sidebar">
+    <div class="sidebar-link">
+      <img src="icons/home.svg">
+      Home
+    </div>
+    <div class="sidebar-link">
+      <img src="icons/explore.svg">
+      Explore
+    </div>
+    <div class="sidebar-link">
+      <img src="icons/subscriptions.svg">
+      Subscriptions
+    </div>
+    <div class="sidebar-link">
+      <img src="icons/originals.svg">
+      Originals
+    </div>
+    <div class="sidebar-link">
+      <img src="icons/youtube-music.svg">
+      YouTube Music
+    </div>
+    <div class="sidebar-link">
+      <img src="icons/library.svg">
+      Library
+    </div>
+
+  </nav>
+  <main>
+    <section class="video-grid">
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://youtu.be/n2RNcPRtAiY?si=RGNlQ15X5r0y9mdv" target="blank">
+            <img class="thumbnail" src="thumbnail/thumbnail-1.webp">
+          </a>
+          
+          <div class="video-time">
+            9:00
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://youtube.com/@mkbhd?si=T5HRqJcPKxN2aiCf" target="_blank">
+              <img class="profile-picture" src="channel-pictures/channel-1.jpeg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://youtu.be/n2RNcPRtAiY?si=RGNlQ15X5r0y9mdv" target="_blank" class="video-title-link">
+              <p class="video-title">
+                Talking Tech and AI with Google CEO
+                Sundar Pichai!
+              </p>
+            </a>
+            <a href="https://youtube.com/@mkbhd?si=T5HRqJcPKxN2aiCf" target="_blank" class="channel-link">
+              <p class="video-author">
+                Marques Brownlee
+              </p>
+            </a>
+  
+            <p class="video-stats">
+              3.4M views &#183; 6 months ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="blank">
+            <img class="thumbnail" src="thumbnail/thumbnail-2.webp">
+          </a>
+          
+          <div class="video-time">
+            15:45
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/c/markiplier" target="_blank">
+              <img class="profile-picture" src="channel-pictures/channel-2.jpeg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank" class="video-title-link">
+              <p class="video-title">
+                Try Not to Laugh Hard #2
+              </p>
+            </a>
+            <a href="https://www.youtube.com/c/markiplier" target="_blank" class="channel-link">
+              <p class="video-author">
+                Michael James
+              </p>
+            </a>
+            <p class="video-stats">
+              19M views &#183; 6 years ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://www.youtube.com/watch?v=FgjPQQeTh1w" target="_blank">
+            <img class="thumbnail" src="thumbnail/thumbnail-3.webp">
+          </a>
+          <div class="video-time">
+            10:00
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/user/SSSniperWolf" target="_blank" >
+              <img class="profile-picture" src="channel-pictures/channel-3.jpeg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://www.youtube.com/watch?v=FgjPQQeTh1w" target="_blank" class="video-title-link">
+              <p class="video-title">
+                Crazy Tik Toks Takens Moments 
+                Before DISASTER
+              </p>
+            </a>
+            <a href="https://www.youtube.com/user/SSSniperWolf" target="_blank" class="channel-link">
+              <p class="video-author">
+                SSSniperWolf
+              </p>
+            </a>
+            <p class="video-stats">
+              12M views &#183; 1 year ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://www.youtube.com/watch?v=094y1Z2wpJg" target="_blank">
+            <img class="thumbnail" src="thumbnail/thumbnail-4.webp">
+          </a>
+          <div class="video-time">
+            7:30
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://youtu.be/n2RNcPRtAiY?si=RGNlQ15X5r0y9mdv" target="_blank" >
+              <img class="profile-picture" src="channel-pictures/channel-4.jpeg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://www.youtube.com/watch?v=094y1Z2wpJg" target="_blank" class="video-title-link">
+              <p class="video-title">
+                The Simplest Math Problem No One Can Solve
+                - Collatz Conjecture
+              </p>
+            </a>
+            <a href="https://youtu.be/n2RNcPRtAiY?si=RGNlQ15X5r0y9mdv" target="_blank" class="channel-link">
+              <p class="video-author">
+                Veritasium
+              </p>
+            </a>
+            <p class="video-stats">
+              20M views &#183; 4 months ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://www.youtube.com/watch?v=86CQq3pKSUw" target="_blank">
+            <img class="thumbnail" src="thumbnail/thumbnail-5.webp">
+          </a>
+          <div class="video-time">
+            6:36
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/c/CSDojo" target="_blank" >
+              <img class="profile-picture" src="channel-pictures/channel-5.jpeg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://www.youtube.com/watch?v=86CQq3pKSUw" target="_blank" class="video-title-link">
+              <p class="video-title">
+                Kadane's Algorithm to Maximum Sum Subarray Problem
+              </p>
+            </a>
+            <a href="https://www.youtube.com/c/CSDojo" target="_blank" class="channel-link">
+              <p class="video-author">
+                CS Dojo
+              </p>
+            </a>
+            <p class="video-stats">
+              618K views &#183; 7 months ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://www.youtube.com/watch?v=yXWw0_UfSFg" target="_blank"  >
+            <img class="thumbnail" src="thumbnail/thumbnail-6.webp">
+          </a>
+          <div class="video-time">
+            12:45
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA" target="_blank" >
+              <img class="profile-picture" src="channel-pictures/channel-6.jpeg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://www.youtube.com/watch?v=yXWw0_UfSFg" target="_blank" class="video-title-link">
+              <p class="video-title">
+                Anything You Can Fit In The Circle I'll
+                Pay For
+              </p>
+            </a>
+            <a href="https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA" target="_blank" class="channel-link">
+              <p class="video-author">
+                MrBeast
+              </p>
+            </a>
+            <p class="video-stats">
+              150M views &#183; 3 years ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://youtu.be/ujhWbKP1rKA?si=JieAftLpTjKFXGEw" target="blank">
+            <img class="thumbnail" src="thumbnail/captain.webp">
+          </a>
+          
+          <div class="video-time">
+            2:55
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/@suntv" target="_blank">
+              <img class="profile-picture" src="thumbnail/suntv.jpg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://youtu.be/ujhWbKP1rKA?si=JieAftLpTjKFXGEw" target="_blank" class="video-title-link">
+              <p class="video-title">
+                 CAPTAIN MILLER - Trailer | Dhanush | Shivarajkumar,
+                 Sundeep Kishan | Arun Matheswaran
+              </p>
+            </a>
+            <a href="https://www.youtube.com/@suntv" target="_blank" class="channel-link">
+              <p class="video-author">
+                Sun TV
+              </p>
+            </a>
+  
+            <p class="video-stats">
+              5.4M views &#183; 1 day ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://youtu.be/pp3R5YUuC7U?si=R4_vgKxdm0R6jgS9" target="_blank"  >
+            <img class="thumbnail" src="thumbnail/alien.webp">
+          </a>
+          <div class="video-time">
+            12:45
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/@SonyMusicSouth" target="_blank" >
+              <img class="profile-picture" src="thumbnail/sony.jpg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://youtu.be/pp3R5YUuC7U?si=R4_vgKxdm0R6jgS9" target="_blank" class="video-title-link">
+              <p class="video-title">
+                Ayalaan(Telugu) - Official Trailer |
+                Sivakarthikeyan, Rakul Preeth Singh |...
+              </p>
+            </a>
+            <a href="https://www.youtube.com/@SonyMusicSouth" target="_blank" class="channel-link">
+              <p class="video-author">
+                Sony Music South
+              </p>
+            </a>
+            <p class="video-stats">
+              1.9M views &#183; 1 day ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://youtu.be/TiEVqZ2Bc_c?si=7cW0NU7u3dMFds4V" target="_blank"  >
+            <img class="thumbnail" src="thumbnail/whatif.webp">
+          </a>
+          <div class="video-time">
+            2:20
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/@marvel" target="_blank" >
+              <img class="profile-picture" src="thumbnail/marvelchannel.jpg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://youtu.be/TiEVqZ2Bc_c?si=7cW0NU7u3dMFds4V" target="_blank" class="video-title-link">
+              <p class="video-title">
+                Marvel Studios' What If...?Season 2 |
+                Official Trailer
+              </p>
+            </a>
+            <a href="https://www.youtube.com/@marvel" target="_blank" class="channel-link">
+              <p class="video-author">
+                Marvel Entertaintment
+              </p>
+            </a>
+            <p class="video-stats">
+              8.2M views &#183; 1 month ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://youtu.be/f3MIhliKdD4?si=VhQtYa4kUwByE99D" target="_blank"  >
+            <img class="thumbnail" src="thumbnail/loki1.webp">
+          </a>
+          <div class="video-time">
+            2:20
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/@hotstarOfficial" target="_blank" >
+              <img class="profile-picture" src="thumbnail/disney.jpg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://youtu.be/f3MIhliKdD4?si=VhQtYa4kUwByE99D" target="_blank" class="video-title-link">
+              <p class="video-title">
+                 Marvel Studios' Loki Season 2 | Mid-Season Trailer | Hindi
+              </p>
+            </a>
+            <a href="https://www.youtube.com/@hotstarOfficial" target="_blank" class="channel-link">
+              <p class="video-author">
+                DisneyPlus Hotstar
+              </p>
+            </a>
+            <p class="video-stats">
+              129K views &#183; 2 months ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://youtu.be/YXqFhf2GRLY?si=CRm5KfxptuFKMguH" target="_blank"  >
+            <img class="thumbnail" src="thumbnail/kstewplaydate.webp">
+          </a>
+          <div class="video-time">
+            1.58
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/@soloaddictz" target="_blank" >
+              <img class="profile-picture" src="thumbnail/channels4_profile.jpg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://youtu.be/YXqFhf2GRLY?si=CRm5KfxptuFKMguH" target="_blank" class="video-title-link">
+              <p class="video-title">
+                 Kristen Stewart/Best ever PLAYDATE Edit(Whatsapp status)
+              </p>
+            </a>
+            <a href="https://www.youtube.com/@soloaddictz" target="_blank" class="channel-link">
+              <p class="video-author">
+                Solo Addictz
+              </p>
+            </a>
+            <p class="video-stats">
+              1.1M views &#183; 3 years ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="video-thumbnail">
+          <a href="https://youtu.be/PR3BiEy0a8Y?si=MI5wNjy6rg_-jbHd" target="_blank"  >
+            <img class="thumbnail" src="thumbnail/hq720.webp">
+          </a>
+          <div class="video-time">
+            1.58
+          </div>
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-profile">
+            <a href="https://www.youtube.com/@soloaddictz" target="_blank" >
+              <img class="profile-picture" src="thumbnail/channels4_profile.jpg">
+            </a>
+          </div>
+          <div class="video-info">
+            <a href="https://youtu.be/PR3BiEy0a8Y?si=MI5wNjy6rg_-jbHd" target="_blank" class="video-title-link">
+              <p class="video-title">
+                 Kristen Stewart Edit |[Crush]
+              </p>
+            </a>
+            <a href="https://www.youtube.com/@soloaddictz" target="_blank" class="channel-link">
+              <p class="video-author">
+                Solo Addictz
+              </p>
+            </a>
+            <p class="video-stats">
+              24K views &#183; 1 year ago
+            </p>
+  
+          </div>
+          
+        </div>
+      </div>
+  
+    </section>
+  </main>
+
+
+  
+</body>
+</html>
